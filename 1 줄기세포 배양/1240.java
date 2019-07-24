@@ -16,7 +16,7 @@ public class D6 {
 	final static String S_CODE[] = {"0001101", "0011001", "0010011", "0111101", "0100011",
 			"0110001", "0101111", "0111011", "0110111", "0001011"}; // 0, 1 , 2, 3, 4, 5, 6, 7, 8, 9 
 	
-	// ¾ÏÈ£È­ ÄÚµå °ª º¯È¯ ÇÔ¼ö
+	// ì•”í˜¸í™” ì½”ë“œ ê°’ ë³€í™˜ í•¨ìˆ˜
 	static int solve(String str) {
 		int ans = 0;
 		for(int i=0; i<S_CODE.length; i++) {
@@ -31,15 +31,15 @@ public class D6 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-		int t_num = 0; // Ãâ·Â¿ë ¹øÈ£
-		int T = Integer.parseInt(st.nextToken()); // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
+		int t_num = 0; // ì¶œë ¥ìš© ë²ˆí˜¸
+		int T = Integer.parseInt(st.nextToken()); // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
 		int N = 0;
 		
 		while(T-- > 0) {
 			st = new StringTokenizer(br.readLine(), " ");
 
-			N = Integer.parseInt(st.nextToken()); // ¹è¿­ Çà Å©±â : N
-			M = Integer.parseInt(st.nextToken()); // ¹è¿­ ¿­ Å©±â : M
+			N = Integer.parseInt(st.nextToken()); // ë°°ì—´ í–‰ í¬ê¸° : N
+			M = Integer.parseInt(st.nextToken()); // ë°°ì—´ ì—´ í¬ê¸° : M
 			
 			matrix = new String[N];
 			
@@ -47,53 +47,53 @@ public class D6 {
 			
 			v = new Vector<String>();
 			last_idx = 0;
-			// ÀÔ·Â ¹Ş±â
+			// ì…ë ¥ ë°›ê¸°
 			for(int i=0; i<N; i++) {
 				st = new StringTokenizer(br.readLine(), "");
 				matrix[i]=st.nextToken();
 			}
 			
 			
-			loop: // break½Ã for¹® ¿ÏÀü ºüÁ®³ª¿È
+			loop: // breakì‹œ forë¬¸ ì™„ì „ ë¹ ì ¸ë‚˜ì˜´
 			for(int i=0; i<N; i++) {
 				for(int j=0; j<M; j++) {
-					// 1ÀÌ ÀÖ´ÂÁö °Ë»ç
+					// 1ì´ ìˆëŠ”ì§€ ê²€ì‚¬
 					if(String.valueOf(matrix[i].charAt(j)).equals("1")) {
 						
-						// ¾ÏÈ£ÄÚµå Çü½Ä ¿Ã¹Ù¸¥Áö °Ë»ç
+						// ì•”í˜¸ì½”ë“œ í˜•ì‹ ì˜¬ë°”ë¥¸ì§€ ê²€ì‚¬
 						if(matrix[i].equals(matrix[i+1])) {
 							for(int l=0; l<M; l++) {
 								if(matrix[i].charAt(l) == '1') {
 									last_idx = l+1;
 								}
 							}
-							// 56¹ø º¤ÅÍ¿¡ ÀúÀåÇÔ
+							// 56ë²ˆ ë²¡í„°ì— ì €ì¥í•¨
 							for(int m=last_idx-MAX_SIZE; m<last_idx; m=m+7) {
 								v.add(matrix[i].substring(m, m+7));
 							} 
 							
-							break loop; // ¹İº¹¹® ºüÁ®³ª¿È
+							break loop; // ë°˜ë³µë¬¸ ë¹ ì ¸ë‚˜ì˜´
 							
-						} // end ¾ÏÈ£ÄÚµå Çü½Ä °Ë»ç
-					} // end 1ÀÌ ÀÖ´ÂÁö °Ë»ç
+						} // end ì•”í˜¸ì½”ë“œ í˜•ì‹ ê²€ì‚¬
+					} // end 1ì´ ìˆëŠ”ì§€ ê²€ì‚¬
 				}
 			}
 			
-			// ¾ÏÈ£ÄÚµå °ËÁõ ¾Ë°í¸®Áò
+			// ì•”í˜¸ì½”ë“œ ê²€ì¦ ì•Œê³ ë¦¬ì¦˜
 			
 			int result = 0;
 			int res = 0;
 			int temp = 0;
 			
 			for(int i=0; i<8; i++) {
-				// Â¦¼ö
+				// ì§ìˆ˜
 				if(i%2==0) {
 					temp = solve(v.get(i));
 					res += temp;
 					result += temp * 3;
 					
 				}
-				// È¦¼ö
+				// í™€ìˆ˜
 				else if(i%2==1){
 					temp = solve(v.get(i));
 					res += temp;
