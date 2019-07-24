@@ -12,20 +12,20 @@ public class D4 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		
-		int t_num = 0; // Ãâ·Â¿ë ¹øÈ£
-		int T = Integer.parseInt(st.nextToken()); // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
+		int t_num = 0; // ì¶œë ¥ìš© ë²ˆí˜¸
+		int T = Integer.parseInt(st.nextToken()); // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
 		
 		while(T-- > 0) {
-			int cnt = 0; // »õ·Î Ä¥ÇÑ Ä«¿îÆ® ¼ö
+			int cnt = 0; // ìƒˆë¡œ ì¹ í•œ ì¹´ìš´íŠ¸ ìˆ˜
 			
 			st = new StringTokenizer(br.readLine(), " ");
 			
-			int N = Integer.parseInt(st.nextToken()); // ¹è¿­ Çà Å©±â : 4
-			int M = Integer.parseInt(st.nextToken()); // ¹è¿­ ¿­ Å©±â : 5
+			int N = Integer.parseInt(st.nextToken()); // ë°°ì—´ í–‰ í¬ê¸° : 4
+			int M = Integer.parseInt(st.nextToken()); // ë°°ì—´ ì—´ í¬ê¸° : 5
 			
 			matrix = new String[N][M];
 			
-			// ÀÔ·Â
+			// ì…ë ¥
 			for(int i=0; i<N; i++) {
 				st = new StringTokenizer(br.readLine(), " ");
 				String str = st.nextToken();
@@ -34,12 +34,12 @@ public class D4 {
 				}
 			}
 			
-			int min_cnt = Integer.MAX_VALUE; // ÃÖ¼Ò Ä«¿îÆ® º¯¼ö
-			int W =0, B = 0, R = 0; // È­ÀÌÆ®, ºí·ç, ·¹µå Ä«¿îÆ® ¼ö
+			int min_cnt = Integer.MAX_VALUE; // ìµœì†Œ ì¹´ìš´íŠ¸ ë³€ìˆ˜
+			int W =0, B = 0, R = 0; // í™”ì´íŠ¸, ë¸”ë£¨, ë ˆë“œ ì¹´ìš´íŠ¸ ìˆ˜
 			
-			// ¾Ë°í¸®Áò   
+			// ì•Œê³ ë¦¬ì¦˜   
 			for(int i=0; i < N-2; i++) { // 1, 2
-				// È­ÀÌÆ®
+				// í™”ì´íŠ¸
 				for(int w=0; w<M; w++) {
 					if(!matrix[i][w].equals("W")) {
 						W +=1;
@@ -47,7 +47,7 @@ public class D4 {
 				}
 				
 				for(int j=i+1; j<N-1; j++) { // 2, 1 
-					// ºí·ç
+					// ë¸”ë£¨
 					for(int b=0; b<M; b++) {
 						if(!matrix[j][b].equals("B")) {
 							B +=1;
@@ -55,7 +55,7 @@ public class D4 {
 					}
 					
 					for(int l=j+1; l<N; l++) { // 3
-						// ·¹µå
+						// ë ˆë“œ
 						for(int r=0; r<M; r++) {
 							if(!matrix[l][r].equals("R")) {
 								R +=1;
@@ -63,22 +63,22 @@ public class D4 {
 						}
 					} // end l
 					
-					// ÃÖ¼Ò Ä«¿îÆ® ºñ±³ ºÎ¹®
+					// ìµœì†Œ ì¹´ìš´íŠ¸ ë¹„êµ ë¶€ë¬¸
 					cnt = W + B + R;
 					if(min_cnt >= cnt) {
 						min_cnt = cnt;
 					}
 					
-					// °¢°¢ÀÇ ÃÊ±âÈ­ ÀÛ¾÷À» ¾ÈÇØ¼­ °ªÀÌ ´Ù¸£°Ô³ª¿ÔÀ½.
+					// ê°ê°ì˜ ì´ˆê¸°í™” ì‘ì—…ì„ ì•ˆí•´ì„œ ê°’ì´ ë‹¤ë¥´ê²Œë‚˜ì™”ìŒ.
 					R = 0;						
 				} // end j
 				
-				// °¢°¢ÀÇ ÃÊ±âÈ­ ÀÛ¾÷À» ¾ÈÇØ¼­ °ªÀÌ ´Ù¸£°Ô³ª¿ÔÀ½.
+				// ê°ê°ì˜ ì´ˆê¸°í™” ì‘ì—…ì„ ì•ˆí•´ì„œ ê°’ì´ ë‹¤ë¥´ê²Œë‚˜ì™”ìŒ.
 				B = 0;
 				
 			} // end i
 			
-			// °á°ú Ãâ·Â
+			// ê²°ê³¼ ì¶œë ¥
 			System.out.println("#" + ++t_num + " " + min_cnt);
 		}
 		br.close();
