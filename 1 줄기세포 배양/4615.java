@@ -10,47 +10,47 @@ public class D3 {
 	static int matrix[][];
 	final static int dx[] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 	final static int dy[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
-	// 8¹æÇâ: »ó, ¿ì»ó, ¿ì, ¿ìÇÏ, ÇÏ, ÁÂÇÏ, ÁÂ, ÁÂ»ó
+	// 8ë°©í–¥: ìƒ, ìš°ìƒ, ìš°, ìš°í•˜, í•˜, ì¢Œí•˜, ì¢Œ, ì¢Œìƒ
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		
-		int t_num = 0; // Ãâ·Â¿ë ¹øÈ£
+		int t_num = 0; // ì¶œë ¥ìš© ë²ˆí˜¸
 		
 		
-		int T = Integer.parseInt(st.nextToken()); // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
+		int T = Integer.parseInt(st.nextToken()); // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
 		
 		while(T-- > 0) {
 			st = new StringTokenizer(br.readLine(), " ");
-			int N = Integer.parseInt(st.nextToken()); // ¹è¿­ Å©±â
-			int M = Integer.parseInt(st.nextToken()); // µ¹À» ³õ´Â È½¼ö
+			int N = Integer.parseInt(st.nextToken()); // ë°°ì—´ í¬ê¸°
+			int M = Integer.parseInt(st.nextToken()); // ëŒì„ ë†“ëŠ” íšŸìˆ˜
 			matrix = new int[N][N];
 			
 			
-			// ÃÊ±âÈ­ ÀÛ¾÷
+			// ì´ˆê¸°í™” ì‘ì—…
 			for(int row[]: matrix) {
 				Arrays.fill(row, 0);
 			}
 			
-			// Á¤°¡¿îµ¥ ÈòÈæµ¹ ¹èÄ¡
+			// ì •ê°€ìš´ë° í°í‘ëŒ ë°°ì¹˜
 			int center = (N/2)-1;
 			matrix[center][center] = 2;
 			matrix[center][center+1] = 1;
 			matrix[center+1][center] = 1;
 			matrix[center+1][center+1] = 2;
 			
-			int x = 0; // xÁÂÇ¥
-			int y = 0; // yÁÂÇ¥
-			int type = 0; // µ¹ Å¸ÀÔ
+			int x = 0; // xì¢Œí‘œ
+			int y = 0; // yì¢Œí‘œ
+			int type = 0; // ëŒ íƒ€ì…
 			int nx = 0;
 			int ny = 0;
 			
-			int w = 0; // Èòµ¹ ¼ö
-			int b = 0; // Èæµ¹ ¼ö
+			int w = 0; // í°ëŒ ìˆ˜
+			int b = 0; // í‘ëŒ ìˆ˜
 			
 			for(int i=0; i<M; i++) {
-				// µ¹À» ³õÀ» Â÷·Ê
+				// ëŒì„ ë†“ì„ ì°¨ë¡€
 				st = new StringTokenizer(br.readLine(), " ");
 				x = Integer.parseInt(st.nextToken())-1;
 				y = Integer.parseInt(st.nextToken())-1;
@@ -75,13 +75,13 @@ public class D3 {
 				}
 			}
 			
-			// ÇØ°á¹æ¹ı  : 1.°¡·Î , 2.¼¼·Î , 3.´ë°¢¼± ºñ±³
+			// í•´ê²°ë°©ë²•  : 1.ê°€ë¡œ , 2.ì„¸ë¡œ , 3.ëŒ€ê°ì„  ë¹„êµ
 		
 			
 			
 			
 			
-			// °¹¼ö Ä«¿îÆ®
+			// ê°¯ìˆ˜ ì¹´ìš´íŠ¸
 			for(int i=0; i<N; i++) {
 				for(int j=0; j<N; j++) {
 					if(matrix[i][j]==1) {
