@@ -8,22 +8,22 @@ import java.util.StringTokenizer;
 
 public class D5 {
 	static String matrix[][];
-	static String temp[][]; // 90, 270µµ º¯È¯Àü ¹è¿­
-	static String r1[][]; // 90µµ ¹è¿­
-	static String r2[][]; // 180µµ ¹è¿­
-	static String r3[][]; // 270µµ  ¹è¿­
+	static String temp[][]; // 90, 270ë„ ë³€í™˜ì „ ë°°ì—´
+	static String r1[][]; // 90ë„ ë°°ì—´
+	static String r2[][]; // 180ë„ ë°°ì—´
+	static String r3[][]; // 270ë„  ë°°ì—´
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		
-		int t_num = 0; // Ãâ·Â¿ë ¹øÈ£
-		int T = Integer.parseInt(st.nextToken()); // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
+		int t_num = 0; // ì¶œë ¥ìš© ë²ˆí˜¸
+		int T = Integer.parseInt(st.nextToken()); // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
 		int N = 0;
 		while(T-- > 0) {
 			st = new StringTokenizer(br.readLine(), " ");
 			
-			N = Integer.parseInt(st.nextToken()); // ¹è¿­  Å©±â : N * N
+			N = Integer.parseInt(st.nextToken()); // ë°°ì—´  í¬ê¸° : N * N
 			
 			matrix = new String[N][N];
 			temp = new String[N][N];
@@ -31,7 +31,7 @@ public class D5 {
 			r2 = new String[N][N];
 			r3 = new String[N][N];
 
-			// ¹è¿­ ÃÊ±âÈ­
+			// ë°°ì—´ ì´ˆê¸°í™”
 			for(String row[]: r1) {
 				Arrays.fill(row, "0");
 			}
@@ -49,48 +49,48 @@ public class D5 {
 				}
 			}
 			
-			//  90µµ 270µµ È¸ÀüÇÏ±âÀü ÁÂ¿ì ´ëÄª ¾Ë°í¸®Áò
+			//  90ë„ 270ë„ íšŒì „í•˜ê¸°ì „ ì¢Œìš° ëŒ€ì¹­ ì•Œê³ ë¦¬ì¦˜
 			for(int i=0; i<N; i++) {
 				for(int j=0; j<N; j++) {
 					temp[i][j] = matrix[j][i];
 				}
 			}
 			
-			// 90µµ ¾Ë°í¸®Áò
+			// 90ë„ ì•Œê³ ë¦¬ì¦˜
 			for(int i=0; i<N; i++) {
 				for(int j=0; j<N; j++) {
 					r1[i][j] = temp[i][N-j-1];
 				}
 			}
 			
-			// 180µµ ¾Ë°í¸®Áò
+			// 180ë„ ì•Œê³ ë¦¬ì¦˜
 			for(int i=0; i<N; i++) {
 				for(int j=0; j<N; j++) {
 					r2[i][j] = matrix[N-i-1][N-j-1];
 				}
 			}
 			
-			// 270µµ ¾Ë°í¸®Áò
+			// 270ë„ ì•Œê³ ë¦¬ì¦˜
 			for(int i=0; i<N; i++) {
 				for(int j=0; j<N; j++) {
 					r3[i][j] = temp[N-i-1][j];
 				}
 			}
 			
-			// Ãâ·Â
+			// ì¶œë ¥
 			System.out.println("#" + ++t_num);
 			for(int i=0; i<N; i++) {
-				// 90µµ
+				// 90ë„
 				for(int j=0; j<N; j++) {
 					System.out.print(r1[i][j]);
 				}
 				System.out.print(" ");
-				// 180µµ
+				// 180ë„
 				for(int j=0; j<N; j++) {
 					System.out.print(r2[i][j]);
 				}
 				System.out.print(" ");
-				// 270µµ
+				// 270ë„
 				for(int j=0; j<N; j++) {
 					System.out.print(r3[i][j]);
 				}
