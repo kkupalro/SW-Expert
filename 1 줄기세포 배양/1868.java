@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Solution {
-	// Àü¿ª º¯¼ö
+	// ì „ì—­ ë³€ìˆ˜
 	static String matrix[][];
 	static boolean map[][];
 	static int count = 0;
@@ -17,13 +17,13 @@ public class Solution {
 	
 	static void solve(int x, int y, int n) {		
 		/* 
-		 * n = 1 : ÁÖº¯ Áö·Ú °è¼ö ÀúÀå
-		 * n = 2 : ÁÖº¯ Áö·Ú 0ÀÏ °æ¿ì Ã³¸® -> 8¹æÇâ ¹æ¹® ÀúÀå
+		 * n = 1 : ì£¼ë³€ ì§€ë¢° ê³„ìˆ˜ ì €ì¥
+		 * n = 2 : ì£¼ë³€ ì§€ë¢° 0ì¼ ê²½ìš° ì²˜ë¦¬ -> 8ë°©í–¥ ë°©ë¬¸ ì €ì¥
 		 */
 		
-		int s_cnt = 0; // 8¹æÇâ Áö·Ú Ä«¿îÆ® º¯¼ö
+		int s_cnt = 0; // 8ë°©í–¥ ì§€ë¢° ì¹´ìš´íŠ¸ ë³€ìˆ˜
 		
-		// 1. ÁÖº¯ Áö·Ú ¸î°³ÀÎÁö º¯È¯
+		// 1. ì£¼ë³€ ì§€ë¢° ëª‡ê°œì¸ì§€ ë³€í™˜
 		if(n==1) {
 			for(int l = 0; l<8; l++) {
 				int nx = x + dx[l];
@@ -37,7 +37,7 @@ public class Solution {
 			matrix[x][y] = Integer.toString(s_cnt);
 		}
 		
-		// 2. ÁÖº¯ ÁË·Ú 0ÀÏ °æ¿ì 8¹æÇâ ¹æ¹® ÀúÀå, ¸¸¾à 8¹æÇâ¿¡ 0ÀÌ ÀÖÀ» °æ¿ì -> ¿¬¼â ¹æ¹® ÀúÀå
+		// 2. ì£¼ë³€ ì£„ë¢° 0ì¼ ê²½ìš° 8ë°©í–¥ ë°©ë¬¸ ì €ì¥, ë§Œì•½ 8ë°©í–¥ì— 0ì´ ìˆì„ ê²½ìš° -> ì—°ì‡„ ë°©ë¬¸ ì €ì¥
 		else if(n==2) {
 			map[x][y] = true;
 			for(int l = 0; l<8; l++) {
@@ -46,11 +46,11 @@ public class Solution {
 				if(nx<0 || nx>N-1 || ny<0 || ny>N-1)
 					continue;
 				if(matrix[nx][ny].equals("0") && !map[nx][ny]) {
-					// ¹æ¹®ÇÏÁö ¾Ê¾ÒÀ»°æ¿ì Àç±Í È£Ãâ 
+					// ë°©ë¬¸í•˜ì§€ ì•Šì•˜ì„ê²½ìš° ì¬ê·€ í˜¸ì¶œ 
 					solve(nx, ny, 2);
 				}
 				else if(!matrix[nx][ny].equals("*")) {
-					// ¹æ¹®
+					// ë°©ë¬¸
 					map[nx][ny] = true;
 				}
 			}
@@ -61,14 +61,14 @@ public class Solution {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-		int t_num = 0; // Ãâ·Â¿ë ¹øÈ£
-		int T = Integer.parseInt(st.nextToken()); // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
+		int t_num = 0; // ì¶œë ¥ìš© ë²ˆí˜¸
+		int T = Integer.parseInt(st.nextToken()); // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
 		
 		while(T-- > 0) {
 			st = new StringTokenizer(br.readLine(), " ");
-			N = Integer.parseInt(st.nextToken()); // Çà·Ä Å©±â
-			matrix = new String[N][N]; // ÀÔ·Â ¹è¿­
-			map = new boolean[N][N]; // ¹æ¹® ¿©ºÎ ¹è¿­
+			N = Integer.parseInt(st.nextToken()); // í–‰ë ¬ í¬ê¸°
+			matrix = new String[N][N]; // ì…ë ¥ ë°°ì—´
+			map = new boolean[N][N]; // ë°©ë¬¸ ì—¬ë¶€ ë°°ì—´
 			count = 0;
 			
 			for(int i=0; i<N; i++) {
@@ -79,7 +79,7 @@ public class Solution {
 				}
 			}
 			
-			// ÁÖº¯ Áö·Ú ¸î°³ÀÎÁö ÀúÀå
+			// ì£¼ë³€ ì§€ë¢° ëª‡ê°œì¸ì§€ ì €ì¥
 			for(int i=0; i<N; i++) {
 				for(int j=0; j<N; j++) {
 					if(!matrix[i][j].equals("*") && matrix[i][j].equals(".")) {
@@ -88,12 +88,12 @@ public class Solution {
 				}
 			}
 			
-			// 0 ÀÏ °æ¿ì Ã³¸®
+			// 0 ì¼ ê²½ìš° ì²˜ë¦¬
 			for(int i=0; i<N; i++) {
 				for(int j=0; j<N; j++) {
 					if(matrix[i][j].equals("0") && !map[i][j]) {
 						solve(i,j,2);
-						// Á¶°Ç¿¡ ¸ÂÀ» °æ¿ì ¿¬¼â ¹æ¹®ÈÄ Ä«¿îÆ® Áõ°¡
+						// ì¡°ê±´ì— ë§ì„ ê²½ìš° ì—°ì‡„ ë°©ë¬¸í›„ ì¹´ìš´íŠ¸ ì¦ê°€
 						count+=1;
 					}
 				}
@@ -103,13 +103,13 @@ public class Solution {
 			for(int i=0; i<N; i++) {
 				for(int j=0; j<N; j++) {
 					if(!matrix[i][j].equals("*") && !map[i][j]) {
-						// Áö·Ú°¡ ¾Æ´Ï¸ç 0ÀÌ¾Æ´Ï°í ¿¬¼â ¹æ¹®µÇÁö ¾ÊÀº ³ª¸ÓÁöµé Ä«¿îÆ®
+						// ì§€ë¢°ê°€ ì•„ë‹ˆë©° 0ì´ì•„ë‹ˆê³  ì—°ì‡„ ë°©ë¬¸ë˜ì§€ ì•Šì€ ë‚˜ë¨¸ì§€ë“¤ ì¹´ìš´íŠ¸
 						count+=1;
 					}
 				}
 			}
 			
-			// Ãâ·Â
+			// ì¶œë ¥
 			System.out.println("#" + ++t_num + " " + count);
 		}	
 		br.close();
