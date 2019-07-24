@@ -1,0 +1,399 @@
+package D7;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.util.Vector;
+
+public class D7 {
+	
+	static String matrix[];
+	
+	static Vector<String> v;
+	
+	static int last_idx;
+	static int first_idx;
+	static int M;
+	static int max_size;
+	final static String[] hexa = {"0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011", "1100", "1101", "1110", "1111"};
+
+	final static String S_CODE[] = {"0001101", "0011001", "0010011", "0111101", "0100011",
+			"0110001", "0101111", "0111011", "0110111", "0001011"}; // 0, 1 , 2, 3, 4, 5, 6, 7, 8, 9 
+	
+	// 암호화 코드 값 변환 함수
+	static int solve(String str) {
+		int ans = 0;
+		for(int i=0; i<S_CODE.length; i++) {
+			if(str.equals(S_CODE[i])) {
+				ans = i;
+			}
+		}
+		return ans;
+	}
+	
+	// 암호코드 가로 길이 포함 반환
+	static void init(String h) {
+		String b = "";
+		int f_idx = 0;
+		int l_idx = 0;
+		int ck = -1;
+		String val = "";
+		char c = '2';
+		
+		int len = 0;
+		
+		int sub = 0;
+		
+		if(h.length() <= 56) {
+			for(int i=h.length()-1; i>0; i--) {
+				if(h.charAt(i) != '0') {
+					sub = i;
+					break;
+				}
+				
+			}
+		}
+		for(int i=0; i<h.length()-sub-1; i++) {
+			val += "0";
+		}
+		h = val.concat(h);
+
+		val = "";
+		// System.out.println(h);
+		
+		// 마지막 인덱스부터 비교 마지막은 무조건 1로끝나야함.
+		test:
+		for(int i=h.length()-1; i>=0; i--) {
+			if(c == '2' && h.charAt(i) != '0') {
+				f_idx = i;
+				val = String.valueOf(h.charAt(i));
+				c = h.charAt(i);
+				ck=1;
+				
+			}
+			else if(ck == 4) {
+				if(c == h.charAt(i)) {
+					val +=h.charAt(i);
+					l_idx = i;
+				}
+				else if(c != h.charAt(i)) {
+					l_idx = i;
+					ck = 0;
+					break;
+				}
+			}
+			else if(c == h.charAt(i)) {
+				val += h.charAt(i);
+			}
+			else if(ck!='2' && ck!=-1 && c != h.charAt(i)) {
+				c = h.charAt(i);
+				val += h.charAt(i);
+				ck+=1;
+			}
+			
+		}
+		// System.out.println(val);
+		h = h.substring(0, f_idx+1);
+		
+		len = val.length();
+		// System.out.println("길이 : " + len);
+		max_size = len * 8; // 56
+		String copy_str = "";
+		// System.out.println("맥스 사이즈 : " + max_size);
+		
+		
+		
+		
+		if(h.length() < max_size) {
+			for(int i=0; i<max_size-h.length(); i++) {
+				copy_str +="0";
+			}
+			f_idx = h.length() - max_size + copy_str.length();
+			h = copy_str.concat(h);
+			
+			
+		}
+		
+		
+		if(h.length() >= max_size) {
+			f_idx = h.length() - max_size;
+		}
+		
+		
+		
+		
+		
+		for(int i=f_idx; i< h.length(); i+=len) {
+			if(v.size() == 8) {
+				break;
+			}
+			else {
+				v.add(h.substring(i, i+len));
+			}
+		}
+		
+		
+		// 길이에 비례한 로직
+		if(len > 7) {
+			int min_cnt = len / 7; // 2
+			String vs = "";
+			
+			int v_len = 0;
+			int v_1 = 0;
+			int v_2 = 0;
+			int v_3 = 0;
+			int v_4 = 0;
+			int flag = 1;
+			int v_c = '2';
+			
+			
+			for(int j=0; j<8; j++) {
+				for(int i=0; i<=v.get(j).length(); i++) {
+					if(i==0) {
+						v_1 +=1;
+						v_c = v.get(j).charAt(i);
+					}
+					else if(i==v.get(j).length()) {
+						v_4 +=1;
+					}
+					else if(v_c == v.get(j).charAt(i)) {
+						if(flag == 1) {
+							v_1 +=1;
+						}
+						else if(flag == 2) {
+							v_2 +=1;
+						}
+						else if(flag == 3) {
+							v_3 +=1;
+						}
+						else if(flag == 4) {
+							v_4 +=1;
+						}
+					}
+					else if(v_c != v.get(j).charAt(i)) {
+						if(flag == 1) {
+							flag = 2;
+							v_c = v.get(j).charAt(i);
+						}
+						else if(flag == 2) {
+							v_2 +=1;
+							flag = 3;
+							v_c = v.get(j).charAt(i);
+						}
+						else if(flag == 3) {
+							v_3 +=1;
+							flag = 4;
+							v_c = v.get(j).charAt(i);
+						}
+					}	
+				}
+				
+				for(int i=0; i<v_1/min_cnt; i++) {
+					vs +="0";
+				}
+				for(int i=0; i<v_2/min_cnt; i++) {
+					vs +="1";
+				}
+				for(int i=0; i<v_3/min_cnt; i++) {
+					vs +="0";
+				}
+				for(int i=0; i<v_4/min_cnt; i++) {
+					vs +="1";
+					if(i== (v_4/min_cnt)-1) {
+						v.add(vs);
+						vs ="";
+						v_1 = 0;
+						v_2 = 0;
+						v_3 = 0;
+						v_4 = 0;
+						v_c = '2';
+						flag = 1;
+					}
+				}
+			}
+			
+			for(int i=0; i<8; i++) {
+				v.remove(0);
+			}
+		}
+		
+	}
+	
+	// 16진수 -> 2진수 반환 함수
+	static String HtoB(String h) {
+		String b = "";
+		String result = "";
+		for(int i=0; i<h.length(); i++) {
+			switch (h.charAt(i)) {
+			case '0':
+				b += hexa[0];
+				break;
+			case '1':
+				b += hexa[1];
+				break;
+			case '2':
+				b += hexa[2];
+				break;
+			case '3':
+				b += hexa[3];
+				break;
+			case '4':
+				b += hexa[4];
+				break;
+			case '5':
+				b += hexa[5];
+				break;
+			case '6':
+				b += hexa[6];
+				break;
+			case '7':
+				b += hexa[7];
+				break;
+			case '8':
+				b += hexa[8];
+				break;
+			case '9':
+				b += hexa[9];
+				break;
+			case 'A':
+				b += hexa[10];
+				break;
+			case 'B':
+				b += hexa[11];
+				break;
+			case 'C':
+				b += hexa[12];
+				break;
+			case 'D':
+				b += hexa[13];
+				break;
+			case 'E':
+				b += hexa[14];
+				break;
+			case 'F':
+				b += hexa[15];
+				break;
+			default:
+				break;
+			}
+		}
+		// 초기화 및 암호코드 반환
+		init(b);
+		
+		return result;
+	}
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+
+		int t_num = 0; // 출력용 번호
+		int T = Integer.parseInt(st.nextToken()); // 테스트 케이스 갯수
+		int N = 0;
+		
+		while(T-- > 0) {
+			st = new StringTokenizer(br.readLine(), " ");
+
+			N = Integer.parseInt(st.nextToken()); // 배열 행 크기 : N
+			M = Integer.parseInt(st.nextToken()); // 배열 열 크기 : M
+			
+			matrix = new String[N];
+			
+			
+			//de = new Vector<>();
+			v = new Vector<String>();
+			first_idx = 0;
+			last_idx = 0;
+			String h_code = "";
+			String b_code = "";
+			// 입력 받기
+			for(int i=0; i<N; i++) {
+				st = new StringTokenizer(br.readLine(), "");
+				matrix[i]=st.nextToken();
+			}
+			
+			
+			loop: // break시 for문 완전 빠져나옴
+			for(int i=0; i<N; i++) {
+				for(int j=0; j<matrix[i].length(); j++) {
+					// 0이 아닌지 검사
+					if(!(String.valueOf(matrix[i].charAt(j))).equals("0")) {
+						// 암호코드 형식 올바른지 검사
+						if(matrix[i].equals(matrix[i+1])) {
+							first_idx = j;
+							
+							for(int l=first_idx; l<matrix[i].length(); l++) {
+								if(matrix[i].charAt(l) != '0') {
+									last_idx = l+1;
+								}
+								else if(matrix[i].charAt(l) == '0') {
+									if(l == M-1) {
+										last_idx = l;
+										break;
+									}
+									if(matrix[i].charAt(l+1) == '0') {
+										break;  
+									}
+									else {
+										last_idx = l+1;
+									}
+								}
+							}
+							// 56번 벡터에 저장함
+							
+							
+							for(int m=first_idx; m<last_idx; m++) {
+								h_code += matrix[i].charAt(m);
+							} 
+							
+							// 암호화 이진수
+							HtoB(h_code);
+							
+							
+							
+							break loop; // 반복문 빠져나옴
+							
+						} // end 암호코드 형식 검사
+					} // end 1이 있는지 검사
+				}
+			}
+				
+			
+			// 암호코드 검증 알고리즘
+			
+						int result = 0;
+						int res = 0;
+						int temp = 0;
+						
+						for(int i=0; i<v.size(); i++) {
+							// 짝수
+							if(i%2==0) {
+								temp = solve(v.get(i));
+								res += temp;
+								result += temp * 3;
+								
+							}
+							// 홀수
+							else if(i%2==1){
+								temp = solve(v.get(i));
+								res += temp;
+								result += solve(v.get(i));
+							}
+						}
+						
+						if(result%10 != 0) {
+							res = 0;
+						}
+						
+						
+						
+						System.out.println("#" + ++t_num + " " + res);
+						
+
+		}
+		br.close();
+	}
+
+}
+
