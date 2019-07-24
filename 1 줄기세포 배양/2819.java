@@ -7,10 +7,10 @@ import java.util.*;
 
 public class Solution
 {	
-	// Àü¿ª º¯¼ö
+	// ì „ì—­ ë³€ìˆ˜
 	static String matrix[][];
 	static Set<String> result;
-	final static int dx[] = { 1,-1, 0, 0}; // µ¿ ¼­ ³² ºÏ
+	final static int dx[] = { 1,-1, 0, 0}; // ë™ ì„œ ë‚¨ ë¶
 	final static int dy[] = { 0, 0, 1,-1};
 	static void solve(int x, int y, int n, String s) {
 		
@@ -36,8 +36,8 @@ public class Solution
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-		int t_num = 0; // Ãâ·Â¿ë ¹øÈ£
-		int T = Integer.parseInt(st.nextToken()); // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
+		int t_num = 0; // ì¶œë ¥ìš© ë²ˆí˜¸
+		int T = Integer.parseInt(st.nextToken()); // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
 		
 		while(T-- > 0) {
 			matrix = new String[4][4];
@@ -56,7 +56,7 @@ public class Solution
 				}
 			}
 			System.out.println("#" + ++t_num + " " + result.size());
-			// Ãâ·Â
+			// ì¶œë ¥
 		}	
 		br.close();
 		
