@@ -18,7 +18,7 @@ public class D4 {
 			
 			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 			int N = Integer.parseInt(st.nextToken());
-			// �ʱ�ȭ �ι�
+			// ÃÊ±âÈ­ ºÎ¹®
 			ar = new int[N];
 			st = new StringTokenizer(br.readLine(), " ");
 			sum = 0;
@@ -33,7 +33,7 @@ public class D4 {
 					sum+= max_v;
 				}
 			}
-			// ��� �ι�
+			// Ãâ·Â ºÎ¹®
 			System.out.printf("#%d %d\n", T, sum);
 		}
 	}
