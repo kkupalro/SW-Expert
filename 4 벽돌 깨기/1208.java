@@ -11,10 +11,10 @@ public class D4 {
 	static int result;
 	static void solve(int cnt)
 	{
-		int max = Integer.MIN_VALUE; // ÃÖ´ë°ª
-		int min = Integer.MAX_VALUE; // ÃÖ¼Ú°ª
-		int max_idx = 0; // ÃÖ´ë°ª ÀÎµ¦½º
-		int min_idx = 0; // ÃÖ¼Ú°ª ÀÎµ¦½º
+		int max = Integer.MIN_VALUE; // ìµœëŒ€ê°’
+		int min = Integer.MAX_VALUE; // ìµœì†Ÿê°’
+		int max_idx = 0; // ìµœëŒ€ê°’ ì¸ë±ìŠ¤
+		int min_idx = 0; // ìµœì†Ÿê°’ ì¸ë±ìŠ¤
 		for(int i = 0; i < MAX; i++)
 		{
 			if(matrix[i] > max)
@@ -40,12 +40,12 @@ public class D4 {
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int T = 10; // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
-		int t_num = 0; // Ãâ·Â¿ë Å×½ºÆ® ÄÉÀÌ½º
+		int T = 10; // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
+		int t_num = 0; // ì¶œë ¥ìš© í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤
 		while(T-- > 0)
 		{
 			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-			int count = Integer.parseInt(st.nextToken()); // ´ıÇÁ Ä«¿îÆ®
+			int count = Integer.parseInt(st.nextToken()); // ë¤í”„ ì¹´ìš´íŠ¸
 			st = new StringTokenizer(br.readLine(), " ");
 			matrix = new int[MAX];
 			for(int i = 0; i < MAX; i++)
