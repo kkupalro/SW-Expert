@@ -12,20 +12,20 @@ public class D6 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		
-		int T = Integer.parseInt(st.nextToken()); // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
+		int T = Integer.parseInt(st.nextToken()); // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
 		int t_num = 0;
 		while(T-- > 0)
 		{
 			st = new StringTokenizer(br.readLine(), " ");
-			int N = Integer.parseInt(st.nextToken()); // N * N ¹è¿­
-			// ¹è¿­ »ý¼º
+			int N = Integer.parseInt(st.nextToken()); // N * N ë°°ì—´
+			// ë°°ì—´ ìƒì„±
 			matrix = new int[N][N];
 			
 			int cnt = 0;
 			int x = 0;
 			int y = -1;
 			int k = 1;
-			int solve = N; // 5¹ø -> 3 2 2 1 1, 7¹ø -> 4 3 3 2 2 1 1 ,9¹ø-> 5 4 4 3 3 2 2 1 1
+			int solve = N; // 5ë²ˆ -> 3 2 2 1 1, 7ë²ˆ -> 4 3 3 2 2 1 1 ,9ë²ˆ-> 5 4 4 3 3 2 2 1 1
 			int check = N * N;
 			
 			while(check > 0)
