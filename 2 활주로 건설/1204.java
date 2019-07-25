@@ -14,17 +14,17 @@ public class D3 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		
-		int T = Integer.parseInt(st.nextToken()); // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
+		int T = Integer.parseInt(st.nextToken()); // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
 		
 		while(T-- > 0) {
 			st = new StringTokenizer(br.readLine(), " ");
-			N = Integer.parseInt(st.nextToken()); // Ãâ·Â¿ë ¹øÈ£
+			N = Integer.parseInt(st.nextToken()); // ì¶œë ¥ìš© ë²ˆí˜¸
 			
 			hm = new HashMap<Integer, Integer>();
 			st = new StringTokenizer(br.readLine());
-			int count = 0; // 1000¸íÀÇ ÇĞ»ı Ä«¿îÆ®
-			int Answer = 0;  // °¡ÀåÅ« ºóµµ¼öÀÇ Á¡¼ö : Å° °ª
-			int max_cnt = 0; // °¡Àå Å« ºóµµ¼ö 
+			int count = 0; // 1000ëª…ì˜ í•™ìƒ ì¹´ìš´íŠ¸
+			int Answer = 0;  // ê°€ì¥í° ë¹ˆë„ìˆ˜ì˜ ì ìˆ˜ : í‚¤ ê°’
+			int max_cnt = 0; // ê°€ì¥ í° ë¹ˆë„ìˆ˜ 
 			while(count < 1000) {
 				int score = Integer.parseInt(st.nextToken());
 				if(hm.containsKey(score)) {
