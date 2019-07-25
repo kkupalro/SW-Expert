@@ -12,7 +12,7 @@ public class D5 {
 	static Set<Integer> set;
 	static int matrix[][];
 	
-	// 1. °¡·Î
+	// 1. ê°€ë¡œ
 	static int solve1() {
 		for(int i = 0; i < MaxV; i++) 
 		{
@@ -37,7 +37,7 @@ public class D5 {
 		return 1;
 	}
 	
-	// 2. ¼¼·Î
+	// 2. ì„¸ë¡œ
 	static int solve2() {
 		for(int i = 0; i < MaxV; i++) 
 		{
@@ -59,7 +59,7 @@ public class D5 {
 		return 1;
 	}	
 	
-	// 3. ±¸¿ª 0 1 2 || 3 4 5 || 6 7 8
+	// 3. êµ¬ì—­ 0 1 2 || 3 4 5 || 6 7 8
 	static int solve3() {
 		// k : 0 3 6
 		for(int k = 0; k < MaxV; k += MaxV/3)
@@ -93,8 +93,8 @@ public class D5 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		
-		int t_num = 0; // Ãâ·Â¿ë ¹øÈ£
-		int T = Integer.parseInt(st.nextToken()); // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
+		int t_num = 0; // ì¶œë ¥ìš© ë²ˆí˜¸
+		int T = Integer.parseInt(st.nextToken()); // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
 		while(T-- > 0) 
 		{
 			matrix = new int[MaxV][MaxV];
