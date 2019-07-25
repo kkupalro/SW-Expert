@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 public class D7 {
 	static int matrix[][];
 	static final int MaxV = 100;
-	static int T = 10; // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
+	static int T = 10; // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
 	static int t_num;
 	static int result;
 	public static void main(String[] args) throws IOException {
@@ -20,7 +20,7 @@ public class D7 {
 		while(T-- > 0)
 		{
 			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-			t_num = Integer.parseInt(st.nextToken()); // Ãâ·Â¿ë Å×½ºÆ® ÄÉÀÌ½º
+			t_num = Integer.parseInt(st.nextToken()); // ì¶œë ¥ìš© í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤
 			matrix = new int[MaxV][MaxV];
 			
 			int sum = 0;
@@ -29,11 +29,11 @@ public class D7 {
 				st = new StringTokenizer(br.readLine() , " ");
 				for(int j = 0; j < MaxV; j++)
 				{
-					matrix[i][j] = Integer.parseInt(st.nextToken()); // ¹è¿­¿¡ ÀúÀå
+					matrix[i][j] = Integer.parseInt(st.nextToken()); // ë°°ì—´ì— ì €ì¥
 					sum += matrix[i][j];
 				}
-				// °¡·Î ·ÎÁ÷
-				result = Math.max(sum, result); // ÃÖ´ë°ª ÀúÀå
+				// ê°€ë¡œ ë¡œì§
+				result = Math.max(sum, result); // ìµœëŒ€ê°’ ì €ì¥
 				sum = 0;
 			}
 			
@@ -44,7 +44,7 @@ public class D7 {
 				{
 					sum += matrix[j][i];
 				}
-				// ¼¼·Î ·ÎÁ÷
+				// ì„¸ë¡œ ë¡œì§
 				result = Math.max(sum, result);
 				sum = 0;
 			}
@@ -63,7 +63,7 @@ public class D7 {
 					}
 						
 				}
-				// ´ë°¢¼± 1·ÎÁ÷
+				// ëŒ€ê°ì„  1ë¡œì§
 				result = Math.max(sum, result);
 				sum = 0;
 			}
@@ -84,7 +84,7 @@ public class D7 {
 					}
 						
 				}
-				// ´ë°¢¼± 2·ÎÁ÷
+				// ëŒ€ê°ì„  2ë¡œì§
 				result = Math.max(sum, result);
 			}
 
