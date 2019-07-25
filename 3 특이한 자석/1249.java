@@ -30,9 +30,9 @@ class node implements Comparable<node> {
 
 public class D7 {
 	static int matrix[][]; // x, y
-	static boolean visit[][][]; // ´©ÀûÇÕ, x, y
-	static int N; // Çà·Ä Å©±â
-	static int result; // °á°ú °ª
+	static boolean visit[][][]; // ëˆ„ì í•©, x, y
+	static int N; // í–‰ë ¬ í¬ê¸°
+	static int result; // ê²°ê³¼ ê°’
 	static final int dx[] = {1, -1, 0, 0}; // ->, <-, ^, v
 	static final int dy[] = {0,  0,-1, 1};
 	static PriorityQueue<node> pq;
@@ -60,7 +60,7 @@ public class D7 {
 				if(!visit[cumsum + matrix[ny][nx]][nx][ny])
 				{
 					pq.add(new node(nx, ny, cumsum + matrix[ny][nx]));
-					visit[cumsum + matrix[ny][nx]][nx][ny] = true; // ¹æ¹® Ã³¸®
+					visit[cumsum + matrix[ny][nx]][nx][ny] = true; // ë°©ë¬¸ ì²˜ë¦¬
 				}
 			}
 		}
@@ -68,14 +68,14 @@ public class D7 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		int t_num = 0; // Å×½ºÆ®ÄÉÀÌ½º Ãâ·É¿ë
-		int T = Integer.parseInt(st.nextToken()); // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
+		int t_num = 0; // í…ŒìŠ¤íŠ¸ì¼€ì´ìŠ¤ ì¶œë ¹ìš©
+		int T = Integer.parseInt(st.nextToken()); // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
 		while(T-- > 0)
 		{
 			st = new StringTokenizer(br.readLine(), " ");
 			N = Integer.parseInt(st.nextToken());
 			matrix = new int[N][N];
-			visit = new boolean[424][N][N]; // ´©ÀûÇÕ, x, y
+			visit = new boolean[424][N][N]; // ëˆ„ì í•©, x, y
 			result = Integer.MAX_VALUE;
 			for(int i = 0; i < N; i++)
 			{
