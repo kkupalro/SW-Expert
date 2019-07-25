@@ -8,8 +8,8 @@ import java.util.StringTokenizer;
 
 public class D5 {
 	static boolean x[];
-	static boolean inc[]; // / �밢��
-	static boolean dec[]; // \ �밢��
+	static boolean inc[]; // / ´ë°¢¼±
+	static boolean dec[]; // \ ´ë°¢¼±
 	static int N;
 	static int result = 0;
 	static void solve(int y) {
