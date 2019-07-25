@@ -22,7 +22,7 @@ public class D6 {
 	static int matrix[][];
 	static final int MAX = 100;
 	static final int dx[] = {1,-1, 0}; 	// ->, <-, ^
-	static final int dy[] = {0, 0,-1}; 	// 0: ¿ì, 1: ÁÂ, 2: »ó
+	static final int dy[] = {0, 0,-1}; 	// 0: ìš°, 1: ì¢Œ, 2: ìƒ
 	static int result;
 	
 	static void bfs(int x, int y, int data, int dir)
@@ -41,13 +41,13 @@ public class D6 {
 			int nx = 0;
 			int ny = 0;
 			
-			// Á¾·á
+			// ì¢…ë£Œ
 			if(y==0)
 			{
 				result = x;
 				return;
 			}
-			// ¿ì, ÁÂ
+			// ìš°, ì¢Œ
 			else if(dir == 0 || dir == 1)
 			{
 				nx = x + dx[2];
@@ -59,7 +59,7 @@ public class D6 {
 					continue loop;
 				}
 			}
-			// »ó
+			// ìƒ
 			else if(dir == 2)
 			{
 				for(int l = 0; l < 2; l++)
@@ -96,7 +96,7 @@ public class D6 {
 				result = x;
 				return;
 			}
-			// ¿ì, ÁÂ
+			// ìš°, ì¢Œ
 			else if(dir == 0 || dir == 1)
 			{
 				nx = x + dx[2];
@@ -108,7 +108,7 @@ public class D6 {
 					return;
 				}
 			}
-			// »ó
+			// ìƒ
 			else if(dir == 2)
 			{
 				for(int l = 0; l < 2; l++)
@@ -138,7 +138,7 @@ public class D6 {
 		while(T-- > 0)
 		{
 			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-			int t_num = Integer.parseInt(st.nextToken()); // Ãâ·Â¿ë Å×½ºÆ® ¹øÈ£
+			int t_num = Integer.parseInt(st.nextToken()); // ì¶œë ¥ìš© í…ŒìŠ¤íŠ¸ ë²ˆí˜¸
 			matrix = new int[MAX][MAX];
 			for(int i = 0; i < MAX; i++)
 			{
