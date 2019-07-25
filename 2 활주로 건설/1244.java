@@ -52,16 +52,16 @@ public class D12 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		int T = Integer.parseInt(st.nextToken()); // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
-		int t_num = 0; // Ãâ·Â¿ë ¹øÈ£
+		int T = Integer.parseInt(st.nextToken()); // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
+		int t_num = 0; // ì¶œë ¥ìš© ë²ˆí˜¸
 		while(T-- > 0)
 		{
 			st = new StringTokenizer(br.readLine(), " ");
-			StringBuffer stb = new StringBuffer(st.nextToken()); // ¼ıÀÚÆÇÀÇ Á¤º¸
-			int C = Integer.parseInt(st.nextToken()); // Á¤º¸ ±³È¯ È½
+			StringBuffer stb = new StringBuffer(st.nextToken()); // ìˆ«ìíŒì˜ ì •ë³´
+			int C = Integer.parseInt(st.nextToken()); // ì •ë³´ êµí™˜ íšŸ
 			matrix = new char[stb.length()];
 			visit = new boolean[999999][C+1];
-			number = Integer.parseInt(stb.toString()); // °á°ú °ª
+			number = Integer.parseInt(stb.toString()); // ê²°ê³¼ ê°’
 			for(int i = 0; i < stb.length(); i++)
 			{
 				matrix[i] = stb.charAt(i);
