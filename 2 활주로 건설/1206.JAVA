@@ -75,13 +75,13 @@ public class D11 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		int T = Integer.parseInt(st.nextToken()); // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
+		int T = Integer.parseInt(st.nextToken()); // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
 		int t_num = 0;
 		while(T-- > 0)
 		{
 			st = new StringTokenizer(br.readLine(), " ");
-			R = Integer.parseInt(st.nextToken()); // ¹è¿­ Çà
-			C = Integer.parseInt(st.nextToken()); // ¹è¿­ ¿­
+			R = Integer.parseInt(st.nextToken()); // ë°°ì—´ í–‰
+			C = Integer.parseInt(st.nextToken()); // ë°°ì—´ ì—´
 			matrix = new char[R][C];
 			map = new boolean[4][16][R][C]; // command, data, row, col
 			for(int i = 0; i < R; i++)
