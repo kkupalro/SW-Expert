@@ -50,11 +50,11 @@ public class D6 {
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int T = 10; // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
+		int T = 10; // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
 		while(T-- > 0)
 		{
 			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-			int t_num = Integer.parseInt(st.nextToken()); // Ãâ¿µ¿ë Å×½ºÆ® ÄÉÀÌ½º
+			int t_num = Integer.parseInt(st.nextToken()); // ì¶œì˜ìš© í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤
 			matrix = new int[MAX][MAX];
 			result = Integer.MAX_VALUE;
 			count = Integer.MAX_VALUE;
