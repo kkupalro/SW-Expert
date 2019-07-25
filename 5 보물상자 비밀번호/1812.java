@@ -63,13 +63,13 @@ public class D12 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		int T = Integer.parseInt(st.nextToken()); // Å×½ºÆ® ÄÉÀÌ½º °¹¼ö
+		int T = Integer.parseInt(st.nextToken()); // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ê°¯ìˆ˜
 		int t_num = 0;
 		while(T-- > 0)
 		{
 			st = new StringTokenizer(br.readLine(), " ");
-			int N = Integer.parseInt(st.nextToken()); // ÇÊ¿äÇÑ Á¤»ç°¢Çü °¹¼ö
-			M = Integer.parseInt(st.nextToken()); // ÆÇ¸ÅÁßÀÎ MÅ©±âÀÇ Á¤»ç°¢Çü Å¸¿ù
+			int N = Integer.parseInt(st.nextToken()); // í•„ìš”í•œ ì •ì‚¬ê°í˜• ê°¯ìˆ˜
+			M = Integer.parseInt(st.nextToken()); // íŒë§¤ì¤‘ì¸ Mí¬ê¸°ì˜ ì •ì‚¬ê°í˜• íƒ€ì›”
 			pq = new PriorityQueue<node>();
 			ar = new ArrayList<node>();
 			st = new StringTokenizer(br.readLine(), " ");
