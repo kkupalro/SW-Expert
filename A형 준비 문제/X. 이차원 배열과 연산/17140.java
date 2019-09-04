@@ -52,7 +52,7 @@ public class Main {
 	    return q;
 	}
 	static int row() {
-		int r = 2;
+		int r = 1;
 		for (int i = 1; i <= Y; i++) {
 		      cnt = new int[101];
 		      for (int j = 1; j <= X; j++) {
@@ -63,23 +63,19 @@ public class Main {
 		      while (!q.isEmpty()) {
 		        node n= q.poll();
 		        matrix[i][k] = n.key;
-		        matrix[i][k + 1] = n.value;
+		        matrix[i][k+1] = n.value;
 		        k += 2;
-		        if (k > 100) {
-		          break;
-		        }
+		        if (k > 100) break;
 		      }
 		      for (int j = k; j < 101; j++) {
 		        matrix[i][j] = 0;
 		      }
-		      if (r < k - 1) {
-		        r = k - 1;
-		      }
+		      r = Math.max(r, k);
 		    }
 		return r;
 	}
 	static int col() {
-	    int c = 2;
+	    int c = 1;
 	    for (int i = 1; i <= X; i++) {
 	      cnt = new int[101];
 	      for (int j = 1; j <= Y; j++) {
@@ -90,18 +86,14 @@ public class Main {
 	      while (!q.isEmpty()) {
 	        node n = q.poll();
 	        matrix[k][i] = n.key;
-	        matrix[k + 1][i] = n.value;
+	        matrix[k+1][i] = n.value;
 	        k += 2;
-	        if (k > 100) {
-	          break;
-	        }
+	        if (k > 100) break;
 	      }
 	      for (int j = k; j < 101; j++) {
 	        matrix[j][i] = 0;
 	      }
-	      if (c < k - 1) {
-	        c = k - 1;
-	      }
+	      c = Math.max(c, k);
 	    }
 	    return c;
 	  }
