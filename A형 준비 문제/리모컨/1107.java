@@ -4,28 +4,28 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-	static int N, M;
-	static boolean able[] = new boolean[10];
-	static int result = 100;
-	static int len = 0;
-	static void solve(int idx, String s) {
-		if(s.length() == len + 1)
+	static int N, M; // N : 채널, M : 고장난 버튼의 개수
+	static boolean able[] = new boolean[10]; // [0 ~ 9] 고장난 리모컨 값 배열
+	static int result = 100; // 눌러진 횟수 
+	static int len; // N의 길이
+	static void solve(int idx, String ans) {
+		if(ans.length() == len + 1)
 		{
-			result = Math.min(result, s.length() + Math.abs(N-Integer.parseInt(s)));
+			result = Math.min(result, ans.length() + Math.abs(N-Integer.parseInt(ans)));
 			return;
 		}
-		else if(s.length() == len)
+		else if(ans.length() == len)
 		{
-			result = Math.min(result, s.length() + Math.abs(N-Integer.parseInt(s)));
+			result = Math.min(result, ans.length() + Math.abs(N-Integer.parseInt(ans)));
 		}
-		else if(s.length() == len - 1)
+		else if(ans.length() == len - 1)
 		{
-			result = Math.min(result, s.length() + Math.abs(N-Integer.parseInt(s)));
+			result = Math.min(result, ans.length() + Math.abs(N-Integer.parseInt(ans)));
 		}
 		for(int i = 0; i < 10; i++)
 		{
 			if(able[i]) continue;
-			solve(i, s + i);
+			solve(i, ans + i);
 		}
 	}
 	public static void main(String[] args) throws IOException {
@@ -33,21 +33,21 @@ public class Main {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringTokenizer st = null;
 		N = Integer.parseInt(br.readLine());
-		len = String.valueOf(N).length();
 		M = Integer.parseInt(br.readLine());
 		if(M > 0)
 		{
-			st = new StringTokenizer(br.readLine(), " ");
+			st = new StringTokenizer(br.readLine(), " "); // M 이 0 이상일 경우에만 입력 받음 -> 런타임 에러 방지 === 85%쯤 런타임 에러 뜸
 			for(int i = 0; i < M; i++) 
 			{
 				able[Integer.parseInt(st.nextToken())] = true;
 			}
 		}
 		result = Math.abs(N - result);
+		len = String.valueOf(N).length();
 		for(int i = 0; i < 10; i++)
 		{
 			if(able[i]) continue;
-			solve(i, i+"");
+			solve(i, "" + i);
 		}
 		bw.write(result + "\n");
 		bw.flush();
