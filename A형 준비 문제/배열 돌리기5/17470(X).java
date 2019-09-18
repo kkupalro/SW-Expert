@@ -4,158 +4,143 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-	static int Y, X, R, result;
-	static int matrix[][] = new int[100][100];
-	static int A[];
-	static void copy(int a[][], int b[][]) {
-		for(int i = 0; i < b.length; i++)
+	static int Y, X, R;
+	static int matrix[][] = new int[101][101];
+	static int temp[][] = new int[101][101];
+	static Stack<Integer> s = new Stack<Integer>();
+	static void copy() {
+		for(int i = 0; i < Y; i++)
 		{
-			for(int j = 0; j < b[i].length; j++)
+			for(int j = 0; j < X; j++)
 			{
-				a[i][j] = b[i][j];
+				matrix[i][j] = temp[i][j];
 			}
 		}
 	}
-	static void solve(int idx) throws IOException {
-		if(idx == R)
+	static void solve() {
+		int mid = 0; int type = 0; int ny = 0; int nx = 0;
+		Iterator<Integer> it = s.iterator();
+		loop1:
+		while(it.hasNext())
 		{
-			return;
-		}
-		int mid = 0;
-		if(A[idx] == 1)
-		{
-			mid = Y/2; // 6/2 - > 3
-			for(int j = 0; j < X; j++)
+			type = it.next();
+			if(type == 1)
 			{
-				for(int i = 0; i < mid; i++)
+				mid = Y/2;
+				for(int j = 0; j < X; j++)
 				{
-					matrix[i][j] ^= matrix[Y-i-1][j];
-					matrix[Y-i-1][j] ^= matrix[i][j];
-					matrix[i][j] ^= matrix[Y-i-1][j];
+					for(int i = 0; i < mid; i++)
+					{
+						matrix[i][j] ^= matrix[Y-i-1][j];
+						matrix[Y-i-1][j] ^= matrix[i][j];
+						matrix[i][j] ^= matrix[Y-i-1][j];
+					}
 				}
+				continue loop1;
 			}
-			solve(idx + 1);
-		}
-		else if(A[idx] == 2)
-		{
-			mid = X/2;
-			for(int i = 0; i < Y; i++)
+			else if(type == 2)
 			{
-				for(int j = 0; j < mid; j++)
+				mid = X/2;
+				for(int i = 0; i < Y; i++)
 				{
-					matrix[i][j] ^= matrix[i][X-j-1];
-					matrix[i][X-j-1] ^= matrix[i][j];
-					matrix[i][j] ^= matrix[i][X-j-1];
+					for(int j = 0; j < mid; j++)
+					{
+						matrix[i][j] ^= matrix[i][X-j-1];
+						matrix[i][X-j-1] ^= matrix[i][j];
+						matrix[i][j] ^= matrix[i][X-j-1];
+					}
 				}
+				continue loop1;
 			}
-			solve(idx + 1);
-		}
-		else if(A[idx] == 3)
-		{
-			mid = Y/2;
-			int temp[][] = new int[X][Y];
-			for(int i = 0; i < X; i++)
+			else if(type == 3)
 			{
-				// 0 1 2 3 4 5
-				for(int j = 0; j < Y; j++)
+				mid = Y/2;
+				for(int i = 0; i < X; i++)
 				{
-					// 0 1 2 3 4 5 6 7
-					// 00 -> 70, 01 -> 60 ... 05 ->00
-					temp[i][j] = matrix[Y-j-1][i];
+					for(int j = 0; j < Y; j++)
+					{
+						temp[i][j] = matrix[Y-j-1][i];
+					}
 				}
+				Y ^= X;
+				X ^= Y;
+				Y ^= X;
+				copy();
+				continue loop1;
 			}
-			Y ^= X;
-			X ^= Y;
-			Y ^= X;
-			copy(matrix, temp);
-			solve(idx + 1);
-		}
-		else if(A[idx] == 4)
-		{
-			mid = Y/2;
-			int temp[][] = new int[X][Y];
-			for(int i = 0; i < X; i++)
+			else if(type == 4)
 			{
-				// 0 1 2 3 4 5
-				for(int j = 0; j < Y; j++)
+				mid = Y/2;
+				for(int i = 0; i < X; i++)
 				{
-					// 0 1 2 3 4 5 6 7
-					// 00 -> 07, 01 -> 17 ... 05 ->57
-					temp[i][j] = matrix[j][X-i-1];
+					for(int j = 0; j < Y; j++)
+					{
+						temp[i][j] = matrix[j][X-i-1];
+					}
 				}
+				Y ^= X;
+				X ^= Y;
+				Y ^= X;
+				copy();
+				continue loop1;
 			}
-			Y ^= X;
-			X ^= Y;
-			Y ^= X;
-			copy(matrix, temp);
-			solve(idx + 1);
-		}
-		else
-		{
-			// 3 3
-			int nx = X/2;
-			int ny = Y/2;
-			int temp[][] = new int[Y][X];
-			if(A[idx] == 5)
+			else
 			{
-				for(int i = 0; i < ny; i++)
+				nx = X/2;
+				ny = Y/2;
+				if(type == 5)
 				{
-					// 1
-					for(int j = 0; j < nx; j++)
+					for(int i = 0; i < ny; i++)
 					{
-						temp[i][j] = matrix[ny+i][j];
+						for(int j = 0; j < nx; j++)
+						{
+							temp[i][j] = matrix[ny+i][j];
+						}
+						for(int j = nx; j < X; j++)
+						{
+							temp[i][j] = matrix[i][j-nx];
+						}
 					}
-					// 2
-					for(int j = nx; j < X; j++)
+					for(int i = ny; i < Y; i++)
 					{
-						temp[i][j] = matrix[i][j-nx];
+						for(int j = nx; j < X; j++)
+						{
+							temp[i][j] = matrix[i-ny][j];
+						}
+						for(int j = 0; j < nx; j++)
+						{
+							temp[i][j] = matrix[i][j+nx];
+						}
 					}
 				}
-				for(int i = ny; i < Y; i++)
+				else if(type == 6)
 				{
-					// 3
-					for(int j = nx; j < X; j++)
+					for(int i = 0; i < ny; i++)
 					{
-						temp[i][j] = matrix[i-ny][j];
+						for(int j = 0; j < nx; j++)
+						{
+							temp[i][j] = matrix[i][j+nx];
+						}
+						for(int j = nx; j < X; j++)
+						{
+							temp[i][j] = matrix[i+ny][j];
+						}
 					}
-					// 4
-					for(int j = 0; j < nx; j++)
+					for(int i = ny; i < Y; i++)
 					{
-						temp[i][j] = matrix[i][j+nx];
+						for(int j = nx; j < X; j++)
+						{
+							temp[i][j] = matrix[i][j-nx];
+						}
+						for(int j = 0; j < nx; j++)
+						{
+							temp[i][j] = matrix[i-ny][j];
+						}
 					}
 				}
+				copy();
+				continue loop1;
 			}
-			else if(A[idx] == 6)
-			{
-				for(int i = 0; i < ny; i++)
-				{
-					// 1
-					for(int j = 0; j < nx; j++)
-					{
-						temp[i][j] = matrix[i][j+nx];
-					}
-					// 2
-					for(int j = nx; j < X; j++)
-					{
-						temp[i][j] = matrix[i+ny][j];
-					}
-				}
-				for(int i = ny; i < Y; i++)
-				{
-					// 3
-					for(int j = nx; j < X; j++)
-					{
-						temp[i][j] = matrix[i][j-nx];
-					}
-					// 4
-					for(int j = 0; j < nx; j++)
-					{
-						temp[i][j] = matrix[i-ny][j];
-					}
-				}
-			}
-			copy(matrix, temp);
-			solve(idx + 1);
 		}
 	}
 	public static void main(String[] args) throws IOException {
@@ -165,8 +150,6 @@ public class Main {
 		Y = Integer.parseInt(st.nextToken());
 		X = Integer.parseInt(st.nextToken());
 		R = Integer.parseInt(st.nextToken());
-		LinkedList<Integer> list = new LinkedList<Integer>();
-		A = new int[R];
 		for(int i = 0; i < Y; i++)
 		{
 			st = new StringTokenizer(br.readLine(), " ");
@@ -176,56 +159,92 @@ public class Main {
 			}
 		}
 		st = new StringTokenizer(br.readLine(), " ");
+		loop:
 		for(int i = 0; i < R; i++)
 		{
 			int num = Integer.parseInt(st.nextToken());
-			if(list.size() > 0)
+			if(!s.isEmpty())
 			{
-				if(num == 1 || num == 2)
+				if(num == 1)
 				{
-					if(num == list.peek())
+					if(s.peek() == num)
 					{
-						list.remove();
-						continue;
+						s.pop();
+						continue loop;
 					}
 				}
-				else
+				else if(num == 2)
 				{
-					if(list.size() >= 3)
+					if(s.peek() == num)
 					{
-						int last = list.size()-1;
-						int cnt = 0;
-						for(int j = last; j > last - 3; j--)
+						s.pop();
+						continue loop;
+					}
+				}
+				else if(num == 3)
+				{
+					if(s.size() >= 3)
+					{
+						if(s.peek() == num)
 						{
-							if(num == list.get(j))
+							int cnt = 0;
+							for(int j = 0; j < 3; j++)
 							{
-								cnt++;
+								if(num == s.get(s.size()-j-1))
+								{
+									cnt++;
+								}
+							}
+							if(cnt == 3)
+							{
+								s.pop();
+								s.pop();
+								s.pop();
+								continue loop;
 							}
 						}
-						if(cnt == 3)
+						else if(s.peek() == 4)
 						{
-							list.remove();
-							list.remove();
-							list.remove();
-							continue;
+							s.pop();
+							continue loop;
 						}
-						
+					}
+				}
+				else if(num == 4)
+				{
+					if(s.size() >= 3)
+					{
+						if(s.peek() == num)
+						{
+							int cnt = 0;
+							for(int j = 0; j < 3; j++)
+							{
+								if(num == s.get(s.size()-j-1))
+								{
+									cnt++;
+								}
+							}
+							if(cnt == 3)
+							{
+								s.pop();
+								s.pop();
+								s.pop();
+								continue loop;
+							}
+							
+						}
+						else if(s.peek() == 3)
+						{
+							s.pop();
+							continue loop;
+						}
 					}
 				}
 			}
-			list.add(num);
+			s.push(num);
 		}
-		// 이부분에서 예를 들어, [1 (2)번, 2 (2)번, 3,4,5,6 (4)번 제자리] 는 원래 자리이므로 연산 횟수 줄이는 로직 구현
-		R = list.size();
-		if(R > 0)
-		{
-			A = new int[R];
-			for(int i = 0; i < R; i++)
-			{
-				A[i] = list.get(i);
-			}
-			solve(0);
-		}
+		R = s.size();
+		solve();
 		for(int i = 0; i < Y; i++)
 		{
 			for(int j = 0; j < X; j++)
