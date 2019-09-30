@@ -24,12 +24,15 @@ public class Main {
 	static LinkedList<node> list;
 	// 순서 있는 조합
 	static void comb(int idx) {
+		// 인덱스 겹치지 않게 
+		// ex) (0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1) ...
 		for(int i = 0; i < list.size(); i++)
 		{
 			if(i == idx) continue;
 			ans = Math.max(ans, dist(idx, i));
 		}
 	}
+	// 범위
 	static int dist(int a_idx, int b_idx) {
 		// a 인덱스, b 인덱스
 		int ad = (int)Math.abs(ax - list.get(a_idx).x) + Math.abs(ay - list.get(a_idx).y);
@@ -43,12 +46,12 @@ public class Main {
 		T = Integer.parseInt(br.readLine());
 		while(T-- > 0)
 		{
-			result = 0;
 			st = new StringTokenizer(br.readLine(), " ");
 			M = Integer.parseInt(st.nextToken());
 			N = Integer.parseInt(st.nextToken());
 			A = new int[M+1];
 			B = new int[M+1];
+			result = 0;
 			ax = 0; ay = 0;
 			bx = 9; by = 9;
 			list = new LinkedList<node>();
@@ -69,7 +72,7 @@ public class Main {
 				int Y = Integer.parseInt(st.nextToken())-1; // Y 좌표
 				int C = Integer.parseInt(st.nextToken()); // 범위
 				int P = Integer.parseInt(st.nextToken()); // 파워
-				list.add(new node(Y, X, C, P));
+				list.offer(new node(Y, X, C, P));
 			}
 			for(int i = 0; i <= M; i++)
 			{
