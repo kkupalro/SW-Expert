@@ -1,0 +1,100 @@
+package TEST;
+
+import java.io.*;
+import java.util.*;
+
+class node implements Comparable<node> {
+	int y; int x;
+	node(int y, int x){
+		this.y = y;
+		this.x = x;
+	}
+	@Override
+	public int compareTo(node target) {
+		if(this.y == target.y)
+		{
+			return target.x - this.x;
+		}
+		return target.y - this.y;
+	}
+}
+
+public class Main {
+	static PriorityQueue<node> pq = new PriorityQueue<node>();
+	static int result;
+	static int matrix[][] = {{0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40}, // (0)
+							 {10, 13, 16, 19, 25, 30, 35, 40}, // (1)10
+							 {20, 22, 24, 25, 30, 35, 40}, // (2)20
+							 {30, 28, 27, 26, 25, 30, 35, 40}}; // (3)30
+	static int visit[][] = new int[4][];
+	static void print(int a[][]) {
+		System.out.println("==================");
+		for (int i = 0; i < a.length; i++) 
+		{
+			for (int j = 0; j < a[i].length; j++) 
+			{
+				System.out.print(a[i][j] + " ");
+			}
+			System.out.println();
+		}
+		System.out.println("==================");
+	}
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		StringTokenizer st = null;
+		result = 0;
+		for(int i = 0; i < 4; i++)
+		{
+			visit[i] = new int[matrix[i].length];
+			pq.offer(new node(0, 0));
+		}
+		st = new StringTokenizer(br.readLine(), " ");
+		for(int i = 0; i < 10; i++)
+		{
+			int data = Integer.parseInt(st.nextToken());
+			node n = pq.poll();
+			int y = n.y;
+			int x = n.x;
+			if(y == 0 && x == 5)
+			{
+				y += 1;
+				x = data;
+			}
+			else if(y == 0 && x == 10)
+			{
+				y += 2;
+				x = data;
+			}
+			else if(y == 0 && x == 15)
+			{
+				y += 3;
+				x = data;
+			}
+			else
+			{
+				x += data;
+			}
+			
+			if(matrix[y].length <= x) continue;
+			
+			if(visit[y][x] > 0)
+			{
+				// 불가능
+				result += matrix[n.y][n.x];
+				pq.offer(new node(n.y, n.x));
+			}
+			else
+			{
+				
+				result += matrix[y][x];
+				visit[n.y][n.x]--;
+				pq.offer(new node(y, x));
+				visit[y][x]++;
+			}
+		}
+		bw.write(result + "\n");
+		bw.flush();
+		bw.close();
+	}
+}
