@@ -1,27 +1,24 @@
 import java.util.*;
 
 class Solution {
-    static Stack<Integer> st = new Stack<Integer>();
-    static int tmp;
-    static int x;
+    static Stack<Integer> stack = new Stack<Integer>();
     public int solution(int[][] board, int[] moves) {
         int answer = 0;
-        for (int k = 0; k < moves.length; k++) {
-			x = moves[k]-1;
-			tmp = 0;
-			for (int i = 0; i < board.length; i++) {
-				if(board[i][x] != 0) {
-					tmp ^= board[i][x];
-					board[i][x] ^= tmp;
-                    tmp ^= board[i][x];
-                    
-                    if(!st.isEmpty() && st.peek() == tmp) {
-						st.pop();
-						answer+=2;
+        for (int i = 0; i < moves.length; i++) {
+			int x = moves[i] - 1;
+			for (int y = 0; y < board.length; y++) {
+				if(board[y][x] > 0) {
+					if(!stack.isEmpty()) {
+						if(stack.peek() == board[y][x]) {
+							stack.pop();
+							answer += 2;
+						} else {
+							stack.push(board[y][x]);
+						}
+					} else {
+						stack.push(board[y][x]);
 					}
-                    else {
-                        st.push(tmp);
-                    }
+					board[y][x] = 0;
 					break;
 				}
 			}
