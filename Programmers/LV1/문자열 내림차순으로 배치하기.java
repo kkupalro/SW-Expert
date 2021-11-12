@@ -1,27 +1,20 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.stream.Collectors;
+
 class Solution {
-  public String solution(String s) {
-      String answer = "";
-      int ans[] = new int[s.length()];
-      for(int i = 0; i < s.length(); i++)
-      {
-          ans[i] = (int)s.charAt(i);
+    static ArrayList<Character> list = new ArrayList<Character>();
+    public String solution(String s) {
+    for (int i = 0; i < s.length(); i++) {
+      list.add(s.charAt(i));
+    }
+    Collections.sort(list, new Comparator<Character>() {
+      @Override
+      public int compare(Character o1, Character o2) {
+        return o2 - o1;
       }
-      for(int i = 0; i < ans.length; i++)
-      {
-          for(int j = i+1; j < ans.length; j++)
-          {
-              if(ans[i] < ans[j])
-              {
-                  ans[i] ^= ans[j];
-                  ans[j] ^= ans[i];
-                  ans[i] ^= ans[j];
-              }
-          }
-      }
-      for(int i = 0; i < ans.length; i++)
-      {
-          answer += (char)ans[i];
-      }
-      return answer;
+    });
+    return list.stream().map(Object::toString).collect(Collectors.joining(""));
   }
 }
