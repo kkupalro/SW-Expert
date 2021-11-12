@@ -1,21 +1,28 @@
-import java.util.*;
+import java.util.Comparator;
+import java.util.LinkedList;
 
 class Solution {
-  public long solution(long n) {
-      long answer = 0;
-      String str = Long.toString(n);
-      Integer arr[] = new Integer[str.length()];
-      for(int i = 0; i < str.length(); i++)
-      {
-          arr[i] = str.charAt(i) - '0';
+  static StringBuilder sb = new StringBuilder();
+  static LinkedList<Integer> list = new LinkedList<Integer>();
+  
+  static public long solution(long n) {
+    sb.append(n);
+    for (int i = 0; i < sb.length(); i++) {
+      list.add(Integer.parseInt(sb.charAt(i) + ""));
+    }
+
+    list.sort(new Comparator<Integer>() {
+      @Override
+      public int compare(Integer o1, Integer o2) {
+        return o2-o1;
       }
-      Arrays.sort(arr, Collections.reverseOrder()); // 내림 차순, int(X) -> Integer(O)
-      str = "";
-      for(int i = 0; i < arr.length; i++)
-      {
-          str += arr[i];
-      }
-      answer = Long.valueOf(str);
-      return answer;
+    });
+    
+    sb = new StringBuilder();
+    
+    for (int i = 0; i < list.size(); i++) {
+      sb.append(list.get(i));
+    }
+    return Long.parseLong(sb.toString());
   }
 }
