@@ -1,12 +1,11 @@
 class Solution {
-  public int[] solution(long n) {
-      int[] answer = {};
-      String str = Long.toString(n);
-      answer = new int[str.length()];
-      for(int i = str.length()-1; i >= 0; i--)
-      {
-          answer[str.length()-1-i] = str.charAt(i) - '0';
-      }
-      return answer;
-  }
+  static StringBuilder sb = new StringBuilder();
+    public int[] solution(long n) {
+        sb.append(n).reverse();
+        int[] answer = new int[sb.length()];
+        for (int i = 0; i < sb.length(); i++) {
+      answer[i] = Character.getNumericValue(sb.charAt(i));
+    }
+        return answer;
+    }
 }
